@@ -1,0 +1,231 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block css %}
+    <link rel="stylesheet" href={% static "css/homepage.css" %}>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+{% endblock css %}
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto&display=swap" rel="stylesheet">
+    {% block title %}<title>HomePage -StangChat</title>{% endblock title %}
+</head>
+<body>
+
+<nav class="navbar">
+    <ul>
+        <li class="navbar-logo"><a href="/">StangChat</a></li>
+        <li class="navbar-search"><form action="/search" method='post'> {% csrf_token %} <input type="text" name="username" id="username" placeholder="Search User"></form></li>
+        <li class="navbar-toggle"><img src={% static 'images/menu.png' %}></li>
+        <li class='navbar-links'><a href="/profile/{{request.user.username}}">{{request.user.username}}</a></li>
+        <li class="navbar-links"><a href="/">Home</a></li>
+        <li class="navbar-links"><a href="/about">About</a></li>
+        <li class="navbar-links only-for-homepage" id='openchat' ><a>Chat</a></li>
+        <li class="navbar-links"><a href="/logout">Logout</a></li>
+        <li class="navbar-links navbar-suggestion only-for-homepage" id='showsuggestions'><a>Show Suggestions</a></li>
+        <li class='navbar-links navbarnewpost only-for-homepage'><img id='newpost' src={% static 'images/newpost.png' %}></li>
+        <li class='navbar-links navbarnewstang only-for-homepage'><img id='newstang'src={% static 'images/newstang.png' %}></li>
+    </ul>
+</nav>
+
+
+{% block body %}
+    <div class="container">
+        
+        <div class="modal">
+            <img class='full-img' src={% static 'images/search.png' %} alt="">
+            <p class='popanimationcaption'>caption here</p>
+        </div>
+        <div class="overlay-items">
+
+            <form action="/checkview" method="post">
+
+            <div class="chatpopupbox" id='chatpopupbox'>
+                <img id='closechatpopup' src={% static 'images/close.png' %}>
+                    {% csrf_token %}
+                    <input class='chatusername' type="text" name="username" id="username" placeholder='Username'>
+                    <input class='chatroomname' type="text" name="roomname" id="roomname" placeholder='Roomname'>
+                    <button type='submit'>Enter</button>
+            </div>
+            </form>
+
+            <div class="suggestion-window" id='suggestion-window'>
+                <img class='closesuggbtn' id='closesuggbtn' src={% static 'images/close.png' %}>
+                <div class="sugg_header">
+                    <p>Users you can follow</p>
+                    {% for suggestions in suggestion %}
+                    <div class="suggestion-list">
+                        <div class="image"><img src={{suggestions.profile_pic.url}}>
+                        </div>
+                        <div class="sugg-username">
+                            <p>@{{suggestions.username}}</p>
+                        </div>
+                        <div class="location">
+                            <p>{{suggestions.location}}</p> 
+                        </div>
+                        <div class="followbutton">
+                            <a href="/profile/{{suggestions.username}}"><button>Follow</button></a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="post-container">
+
+            <!-- stang cards here -->
+                {% for stangs in stang reversed %}
+                <div class="stangcard">
+                    <div class="stangusername">
+                        <a href="/profile/{{stangs.username}}"><p>{{stangs.username}}</p></a>
+                    </div>
+                    <div class="deletestang">
+                        {% if request.user.username == stangs.username %}
+                        <a href="/deletestang?username={{request.user.username}}&stangid={{stangs.id}}"><img src={% static 'images/del.svg' %} alt=""></a>
+                        {% endif %}
+                    </div>
+                    <div class="stang-content">
+                        <p>{{stangs.stangmessage}}</p>
+                    </div>
+                    <div class="stanglike">
+                        <a href="/likestang?username={{request.user.username}}&stangid={{stangs.id}}"><img class='stanglikebtn' src= {% static 'images/like.svg' %}></a>
+                        {% if stangs.number_of_likes == 0 %}
+                        <p>No Likes</p>
+                        {% elif stangs.number_of_likes == 1 %}
+                        <p>Liked by {{stangs.number_of_likes}} person</p>
+                        {% else %}
+                        <p> Liked by {{stangs.number_of_likes }} people</p>
+                        {% endif %}
+
+                    </div>
+                </div>
+                {% endfor %}
+
+            <!-- post cards here -->
+                {% for images in post reversed %}
+                <div class="postcard">
+                    <div class="profileicon">
+                        <a href="profile/{{images.username}}"><img class='cardprofile'src="{{images.profile_image.url}}" alt=""></a>
+                    </div>
+                    <div class="username">
+                        <a href="profile/{{images.username}}">{{images.username}}</a>
+                    </div>
+                    <div class="deletesection">
+                        {% if images.username == request.user.username %}
+                        <form action="/deletepost" method="post">
+                            {% csrf_token %}
+                        <input type="hidden" name="username" value={{request.user.username}}>
+                        <input type="hidden" name="postid" value={{images.id}}>
+                        <button type='submit' class='postoptions'><img src= {% static 'images/del.svg' %} alt=""></button>
+                    </form>
+                        {% endif %}
+
+                    </div>
+                    <div class="mainimage">
+
+                        {% if images.post_video.url != '' %}
+                        <video class='mainpost' src="{{images.post_video.url}}" alt='{{images.caption}}' loop muted autoplay></video>
+
+                        {% elif images.post_image.url != '' %}
+                        <img class='mainpost' src={{images.post_image.url}} alt='{{images.caption}}'>
+
+                        {% endif %}
+
+                    </div>
+                    <div class="caption">
+                        <p>{{images.caption}}</p>
+                    </div>
+                    
+                    <div class="like-btn-div">
+                        <a  href='/likepost?username={{request.user.username}}&postid={{images.id}}' id='like-form'><img id='like-btn' class='like-img' src={% static 'images/like.svg' %}></a>
+                        {% if images.no_of_likes == 0 %}
+                        <p id='likescount'>No Likes</p>
+                        {% elif images.no_of_likes == 1 %}
+                        <p id='likescount'>Liked by {{images.no_of_likes}} person</p>
+                        {% else %}
+                        <p id='likescount'>Liked by {{images.no_of_likes}} people</p>
+                        {% endif %} 
+                    </div>
+
+                    <!---comment div here -->
+                    {% comment %} <div class="comment-div">
+                        <img class='commentcomment' src= {% static 'images/comment.png' %} alt="">
+
+                        <div class="commentbox" id='commentbox'>
+                            <div class="comments">
+                                <div class="commentsusername">
+                                    {{comment.username}}
+                                </div>
+                                <div class="commentbody">
+                                    <p>{{comment.message}}</p>
+                                </div>
+
+                                <div class="addcomment">
+                                    <form action="/uploadcomment" method="post">
+                                        {% csrf_token %}
+                                    <input type="hidden" name="username" value={{request.user.username}}>
+                                    <input type="hidden" name="postid" value={{images.id}}>
+                                    <input type="text" name='message' placeholder='Write your comment here..'>
+                                    <button type='submit'>Post</button>
+                    
+                                </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div> {% endcomment %}
+                </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+        <div class="video-container">
+            <video src={% static "back2.mp4" %} autoplay loop muted></video>
+        </div>
+    </div>
+
+    <!-- new post popup here -->
+        <div class="newpostpopup" id="newpostpopup">
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <input class="fileinput" type="file" name="postimage" id="postimage" accept="image/*"><br><br>
+                <input  class='newpostcaption' type="text" name="caption" placeholder="Caption..."><br><br>
+                <button class='postbutton' type="submit">POST</button>
+            </form>
+            <p id='postvideo'>Post Video</p>
+            <button class="postpopupbackbtn" id="postpopupbackbtn">Back</button>
+        </div>
+
+    <!-- new video popup here -->
+        <div class="newvideopopup" id="newvideopopup">
+            <form action="/uploadvideo" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <input class="fileinput" type="file" name="postvideo" id="postimage" accept="video/*"><br><br>
+                <input  class='newpostcaption' type="text" name="videocaption" placeholder="Caption..."><br><br>
+                <button class='postbutton' type="submit">POST VIDEO</button>
+            </form>
+            <button class="postpopupbackbtn" id="videopopupbackbtn">Back</button>
+        </div>
+
+    <!-- new stang pop up here -->
+        <div class="newstangpopup" id="newstangpopup">
+            <form action="/uploadstang" method="post">
+                {% csrf_token %}
+                <p class="stangpopheading">Make A Stang Here</p>
+                <textarea  class='stangcontent' type="text" name="stangcontent" placeholder="What's on your mind?"></textarea><br><br>
+                <button  class='postbutton' type="submit">POST</button>
+            </form>
+            <button class="stangpopupbackbtn" id="stangpopupbackbtn">Back</button>
+        </div>
+ 
+
+{% endblock body %}
+</body>
+
+{% block js %}
+<script src={% static 'js/homepage.js' %}></script>
+{% endblock js %}

@@ -1,0 +1,78 @@
+{% extends 'homepage.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href={% static 'css/room.css' %}>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+{% endblock css %}
+
+{% block body %}
+
+<script>
+  $(document).ready(function () {
+    setInterval(function () {
+        $.ajax({
+        type: "GET",
+        url: "/getMessages/{{room_details}}/",
+        success: function (response) {
+            // console.log(response);
+            $("#message-container").empty();
+            for (var key in response.messages) {
+            var temp = "<div class='messages'><b>"+response.messages[key].user+"</b><br /><br /> <span><p class='main-message'>"+response.messages[key].value+"</p></span><br /> <div class='time'><span>"+response.messages[key].time+"</span></div></div>";
+            $("#message-container").append(temp);
+            }
+        },
+        error: function (response) {
+            alert("An error occured");
+        },
+        });
+    },1000);
+    });
+</script>
+
+<div class="container">
+  <div class="overlay-items">
+    <div class="message-container" id='message-container'>
+    </div>
+    <div class="sendbox">
+      <form id="post-form">
+        {% csrf_token %}
+        <input type="hidden" name="username_user" id="username_user" value="{{username}}"/>
+        <input type="hidden" name="room_id" id="room_id" value="{{room_details.id}}"/>
+        <input type="text" name="message" id="message" class="message"/>
+        <button type="submit" id="submit">Send</button>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="video-container">
+    <video src={% static 'cloud.mp4' %} autoplay loop muted></video>
+  </div>
+</div>
+
+<script>
+  $(document).on("submit", "#post-form", function (e) {
+    e.preventDefault();
+
+    $.ajax({
+      type: "POST",
+      url: "/send",
+      data: {
+        username: $("#username_user").val(),
+        room_id: $("#room_id").val(),
+        message: $("#message").val(),
+        csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
+      },
+      success: function (data) {
+        // alert(data)
+      },
+    });
+    document.getElementById("message").value = "";
+  });
+</script>
+
+{% endblock body %}
+
+{% block js %}
+  <script src={% static 'js/room.js' %}></script>
+{% endblock js %}

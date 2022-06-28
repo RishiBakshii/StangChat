@@ -1,0 +1,29 @@
+{% extends 'homepage.html' %}
+
+{% load static %}
+
+{% block title %}
+<title>StangChat- Search</title>
+{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock css %}
+
+{% block body %}
+{% for results in search %} 
+<div class="results">
+    <div class="profileimage">
+        <a href="/profile/{{results.username}}"><img src={{results.profile_pic.url}}></a>
+        <a href="/profile/{{results.username}}"><p class="p1">@{{results.username}}</p></a>
+        <p class='p2'>{{results.location}}</p>
+        <p class='p3'>{{results.bio}}</p>
+        <p class="p4">{{results.followers}} Followers</p>
+    </div>
+</div>
+{% endfor %}
+{% endblock body %}
+{% block js %}
+<script src={% static 'js/search.js' %}></script>
+{% endblock js %}
+

@@ -1,0 +1,296 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+a{
+    cursor: pointer;
+}
+
+body{
+    background-color: gray;
+}
+html{
+    scrollbar-width: none;
+}
+::-webkit-scrollbar{
+    display: none;
+}
+
+.navbar{
+    position: relative;
+    z-index: 2;
+}
+.navbar ul{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.414);
+    color: white;
+}
+.only-for-homepage{
+    visibility: collapse;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.navbar a{
+    color: white;
+    text-decoration: none;
+    transition: .7s;
+}
+
+.navbar-links:hover{
+    font-size: 1.6rem;
+
+}
+
+.navbar li{
+    list-style: none;
+    padding: 1rem;
+}
+
+.navbar-logo{
+    flex:1;
+    font-size: 1.3rem;
+    user-select: none;
+}
+
+.navbar-search{
+    flex :9;
+}
+
+.navbarnewpost img{
+    width: 2rem;
+    filter: invert(1);
+    cursor: pointer;
+}
+
+.navbarnewstang img{
+    width: 2rem;
+    filter: invert(1);
+    cursor: pointer;
+}
+
+.navbar-search input{
+    outline: none;
+    border: none;
+    border-radius: 6px;
+    height: 2rem;
+    width: 17rem;
+    transition: .7s;
+}
+.only-for-homepage{
+    visibility: collapse;
+    pointer-events: none;
+    display: none;
+}
+.navbar-search input:hover{
+    width: 19rem;
+}
+
+.navbar-toggle img{
+    width: 2rem;
+    filter: invert(1)}
+
+.navbar-toggle{
+    display:none;
+}
+
+@media (max-width:734px){
+    .navbar ul{
+        flex-wrap: wrap;
+    }
+    .navbar-toggle{
+        display: block;
+    }
+    .navbar-links{
+        display: none;
+        text-align: center;
+        width: 100%;
+
+    }
+    .active{
+        display: block;
+    }
+}
+@media (max-width:496px){
+    .navbar ul{
+        flex-wrap: wrap;
+    }
+    .navbar-toggle{
+        display: block;
+    }
+    .navbar-links{
+        display: none;
+        text-align: center;
+        width: 100%;
+
+    }
+    .active{
+        display: block;
+    }
+
+    .navbar-search input{
+        width:100%;
+    }
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    bottom: 3.7rem;
+    position: relative;
+}
+.video-container {
+    position: absolute;
+    width: 100%;
+}
+.overlay-items {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.message-container{
+    width: 80rem;
+    height: 40rem;
+    bottom: 3rem;
+    position: relative;
+    overflow-y: scroll;
+}
+.sendbox{
+    position: absolute;
+    width: 40rem;
+    height: 5rem;
+    top: 38rem;
+}
+.sendbox .message{
+    outline: none;
+    border: none;
+    height: 1.8rem;
+    width: 20rem;
+    border-radius: 4px;
+    transition: .7s;
+    font-size: .9rem;
+}
+.sendbox .message:hover{
+    width: 22rem;
+    background-color: rgb(229, 229, 229);
+}
+.sendbox button{
+    padding: 0.7rem;
+    width: 6rem;
+    box-shadow: inset 0 4rem 1rem 0 rgba(0, 128, 0, 0.293);
+    transition: 1s;
+    border: none;
+    outline: none;
+    border-radius: 0.3rem;
+    font-size: .9rem;
+}
+.sendbox button:hover{
+    box-shadow: inset 2rem 0 1.5rem 3rem rgba(0, 128, 0, 0.525);
+    color: white;
+}
+
+.messages{
+    background-color:rgba(220, 220, 220, 0.283);
+    text-align:left; 
+    border-radius:5px;
+    margin-bottom:.3rem;  
+    position: relative;  
+    width: 100%;  
+
+}
+.message b{
+    color: white;
+    margin-left: 0.5rem;
+    position: relative;
+    top: 0.5rem;
+}
+.time{
+    text-align: right;
+}
+
+
+@media only screen and (max-width:1296px){
+    .message-container{
+        width: 97vw;
+    }
+    body{
+        overflow: hidden;
+    }
+    html{
+        overflow: hidden;
+    }
+}
+@media only screen and (max-width:430px){
+    .sendbox{
+        width: 91vw;
+        display: flex;
+        justify-content: center;
+    }
+    .sendbox button{
+        visibility: collapse;
+        opacity: 0;
+        pointer-events: none;
+    }
+    .sendbox .message:hover{
+        width: 100vw;
+    }
+}
+@media only screen and (max-width:360px){
+
+    .sendbox{
+        width: 91vw;
+        right: 0;
+        left: 0.6rem;
+    }
+    .sendbox .message{
+        width: 17rem;
+        transition: .7s;
+    }
+    .sendbox .message:hover{
+        width:21.5rem;
+    }
+}
+@media only screen and (max-width:352px){
+
+    .sendbox{
+        width: 91vw;
+        right: 0;
+        left: 0.7rem;
+    }
+
+    .sendbox .message{
+        width: 18rem;
+    }
+    .sendbox .message:hover{
+        width:21rem;
+    }
+}
+@media only screen and (max-width:338px){
+
+
+    .sendbox .message{
+        width: 16rem;
+    }
+    .sendbox .message:hover{
+        width:19rem;
+    }
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,93 @@
+*{
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+html{
+    scrollbar-width: none;
+    overflow: hidden;
+}
+body{
+    overflow: hidden;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+.video-container{
+    position: absolute;
+}
+
+.overlay-items{
+    position: relative;
+    z-index: 1;
+}
+
+.main-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    background-color :#14141460;
+    width: 100vw;
+    height: 60rem;
+}
+
+img{
+    width: 15rem;
+    position: relative;
+    border-radius:3rem;
+}
+.mainline{
+    font-size: 1.2rem;
+}
+.strip{
+    background-color: rgba(164, 164, 164, 0.58);
+    position: relative;
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    bottom: 15rem;
+}
+
+.content{
+    position: absolute;
+    top: 25rem;
+    color: rgba(220, 220, 220, 0.716);
+}
+
+h2{
+    color: (220, 220, 220, 0.500);
+    text-align: center;
+    margin-top: 1rem;
+}
+P{
+    text-align: center;
+}
+
+button{
+    bottom: 56rem;
+    position: absolute;
+    width: 100px;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-left: 1rem;
+    z-index: 12;
+}
+
+a{
+    text-decoration: none;
+    color:black;
+}
+
+

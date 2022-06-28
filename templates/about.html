@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About -StangChat</title>
+    <link rel="stylesheet" href= {% static 'css/about.css' %} >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="overlay-items">
+            <div class="main-box">
+                <div class="strip">
+                <img src={% static 'myimage.jpeg' %} alt="">
+                <div class="content"><br>
+                    <p class='p1'>StangChat is developed by Rishi Bakshi. It uses DJANGO as its backend framework.</p>
+                    <h2>
+                        Why i developed it?
+                    </h2>
+                    <p>My aim was to build a social platform where a user can chat anonymously and share their daily FEEDS and STANGS</p>
+                    <h2>
+                        How it works?
+                    </h2>
+                    <p>
+                        As per now StangChat is purely based on http protocols and ajax but thats not it as the major updates are about to come.<br>I am planning to make it realtime with the use of websockets.
+
+                    </p>
+                    <br><br><br>
+                    <p class='mainline'>
+                        Believe it it's gonna be an exceptionally staggering experience.
+                    </p><br><br><br><br><br><br><br><br>
+                    <footer>
+                        <P>Copyright ©StangChat 2022 All rights reserved</P>
+                    </footer>
+                </div>
+            </div>
+        </div>
+        <a href="/"><button>Back</button></a>
+
+        </div>
+        <div class="video-container">
+            <video src={% static 'about.mp4' %} autoplay loop muted></video>
+        </div>
+    </div>
+</body>
+</html>
+
+

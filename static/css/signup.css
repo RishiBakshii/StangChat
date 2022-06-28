@@ -1,0 +1,136 @@
+*{
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    position:relative;
+
+}
+
+.video-container{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    overflow-y:scroll
+}
+
+
+.overlay-items{
+    position:relative;
+    z-index: 1;
+    text-align: center;
+
+}
+
+.heading{
+
+    bottom: 8rem;
+    position: relative;
+    font-size: 1.6rem;
+    color: white;
+    
+
+}
+
+.signup-btn{
+    position: relative;
+    top: 1.5rem;
+    padding: 0.7rem;
+    width: 8rem;
+    box-shadow:  inset 0 0 0 0 lightblue;
+    transition: 0.8s;
+    border-radius: 0.3rem;
+    outline:none;
+    border: none;
+}
+
+.signup-btn:hover{
+    box-shadow: inset 3rem 0 0 0 rgb(23, 205, 196);
+}
+
+.signup-block{
+    text-align: center;
+    position: relative;
+    bottom: 4rem;
+}
+
+.username{
+    outline: none;
+    border: none;
+    border-radius: 0.3rem;
+    width: 18rem;
+    height: 1.85rem;
+    box-shadow: inset 0 0 0 0 rgb(18, 222, 212);
+    transition: 1.5s ease-out;
+}
+
+.username:hover{
+    box-shadow: inset 15rem 0 4rem 0 rgb(23, 205, 196);
+    color: white;
+    width: 18.5rem;
+}
+
+.password{
+    outline: none;
+    border: none;
+    border-radius: 0.3rem;
+    width: 18rem;
+    height: 1.85rem;
+    background-color: white;
+    transition: 1s;
+}
+
+.password:hover{
+    background-color: rgba(255, 255, 255, 0.494);
+    width: 18.5rem;
+
+}
+
+p{
+    position: relative;
+    text-align: center;
+    top: 3rem;
+    font-size: 0.9rem;
+    transition: 1s;
+
+}
+p:hover{
+    font-size: 1rem;
+    opacity: 0.4;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.message{
+    color: white;
+    position: relative;
+    font-size: 1rem;
+    top: -5rem;
+    text-align: center;
+    width: auto;
+    height: 1.5rem;
+    left: -0.5rem;
+}
+
+/* @media only screen and (max-width:512px) {
+    .message{
+        position: relative;
+        top: -4rem;
+        left: -2.4rem;
+    }
+    
+} */
+
