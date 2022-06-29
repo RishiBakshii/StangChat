@@ -160,7 +160,8 @@ html{
     bottom: 12rem;
     left: 12.2rem;
     font-size: 1.5rem;
-    width: fit-content;
+    width: 16rem;
+    overflow-x: scroll;
 }
 .profileimage .p2{
     position: relative;
