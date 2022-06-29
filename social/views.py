@@ -316,6 +316,52 @@ def uploadvideo(r):
             user_profile.save()
 
             return redirect('/') 
+
+@login_required(login_url='/login')       
+def deleterequest(r):
+    if r.method=='POST':
+        userreponse=r.POST['userresponse']
+        userreponse=userreponse.replace(' ','')
+
+        if userreponse==f'{r.user.username}/delete':
+
+            profile_obj=Profile.objects.filter(username=f'{r.user.username}')
+            profile_obj.delete()
+
+            user_obj=User.objects.filter(username=f'{r.user.username}')
+            user_obj.delete()
+
+            if Post.objects.filter(username=f'{r.user.username}').exists():
+                post_obj=Post.objects.filter(username=f'{r.user.username}')
+                post_obj.delete()
+            
+            if Stang.objects.filter(username=f'{r.user.username}').exists():
+                stang_obj=Stang.objects.filter(username=f'{r.user.username}')
+                stang_obj.delete()
+            
+            if Followers.objects.filter(username=f'{r.user.username}').exists():
+                followers_obj=Followers.objects.filter(username=f'{r.user.username}')
+                followers_obj.delete()
+
+            if Followers.objects.filter(user_being_followed=f'{r.user.username}').exists():
+                followers_objj=Followers.objects.filter(user_being_followed=f'{r.user.username}')
+                followers_objj.delete()
+            
+            if Likepost.objects.filter(username=f'{r.user.username}').exists():
+                likepost_obj=Likepost.objects.filter(username=f'{r.user.username}')
+                likepost_obj.delete()
+            
+            if Likestang.objects.filter(username=f'{r.user.username}').exists():
+                likestang_obj=Likestang.objects.filter(username=f'{r.user.username}')
+                likestang_obj.delete()
+            
+            logout(r)
+            return redirect('/login')
+        
+        else:
+            messages.info(r,'Invalid Input!')
+            return redirect('/settings')
+
     
 
 

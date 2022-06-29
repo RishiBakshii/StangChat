@@ -16,4 +16,5 @@ urlpatterns = [
     path('deletestang',views.deletestang,name='deletestang'),
     path('search',views.search,name='search'),
     path('uploadvideo',views.uploadvideo,name='uploadvideo'),
+    path('deleterequest',views.deleterequest,name='deleterequest'),
 ]
