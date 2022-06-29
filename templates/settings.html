@@ -15,7 +15,20 @@
     <div class="container">
 
         <div class="overlay-items">
-            <div class="box">
+            <form action="/deleterequest" method='post'>
+                <div class="box">
+                    {% csrf_token %}
+                    <div class="deletepopup" id='deletepopup'>
+                        <p>Hey! {{request.user.username}} if you want to delete your account Type yourusername/delete</p>
+                        <input type="text" name="userresponse" placeholder='yourusername/delete'>
+                        {% for message in messages %}
+                        <p class='message'>{{message}}</p>
+                        {% endfor %}
+                        <div class="buttondlt">
+                        <button type="submit">Proceed</button>
+                    </div>
+                    </form>
+                    </div>
                 <div class="welcometext">
                     {% if new == yes %}
                     <p class='p1'>{{profile.username}}</p>

@@ -137,6 +137,165 @@ html{
     color: black;
 }
 
+.deleteaccount{
+    color: red;
+    cursor: pointer;
+    position: relative;
+    left: 24rem;
+    bottom: 4rem;
+}
+
+.deletepopup{
+    position: absolute;
+    background-color: rgb(217, 217, 217);
+    width: 30rem;
+    height: 8.5rem;
+    z-index: 8;
+    top: 10rem;
+    border-radius: 6px;
+    opacity: 0;
+    visibility: collapse;
+    pointer-events: none;
+    transition: .7s;
+    text-align: center;
+}
+
+.showdeletepopup{
+    opacity: 100;
+    visibility: visible;
+    pointer-events: all;
+    transform: scale(1.01)
+}
+
+.deletepopup input{
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    position: relative;
+    transition: .7s;
+    width: 8rem;
+    height: 2rem;
+    margin:auto;
+    top: .3rem;
+}
+
+.deletepopup input:hover{
+    width: 12rem;
+}
+
+.buttondlt{
+    position: relative;
+    width: 100%;
+    top: .7rem;
+}
+
+.deletepopup button{
+    outline: none;
+    border: none;
+    box-shadow: inset 0 0 0 0 rgba(38, 0, 255, 0.44);
+    transition: .7s;
+    padding: .5rem;
+    border-radius: 6px;
+    width: 6rem;
+}
+
+
+.deletepopup button:hover{
+    box-shadow: inset 6rem 0 0 0 rgba(255, 0, 0, 0);
+}
+
+.message{
+    color: red;
+    position: absolute;
+    font-size: small;
+    top: 7rem;
+}
+
+@media only screen and (max-width:912px) {
+    .deleteaccount{
+        left: 83vw;
+        width: fit-content;
+    }
+}
+@media only screen and (max-width:800px) {
+    .deleteaccount{
+        left: 81vw;
+    }
+}
+@media only screen and (max-width:724px) {
+    .deleteaccount{
+        left: 79vw;
+    }
+}
+@media only screen and (max-width:660px) {
+    .deleteaccount{
+        left: 77vw;
+        top: 28.7rem;
+    }
+}
+@media only screen and (max-width:596px) {
+    .deleteaccount{
+        left: 75vw;
+    }
+}
+@media only screen and (max-width:552px) {
+    .deleteaccount{
+        left: 73vw;
+    }
+}
+@media only screen and (max-width:506px) {
+    .deleteaccount{
+        left: 71vw;
+    }
+}
+@media only screen and (max-width:484px) {
+    .deleteaccount{
+        left: 70vw;
+    }
+
+    .deletepopup{
+        width: 100vw;
+    }
+    .deletepopup button{
+        position: relative;
+
+    }
+}
+@media only screen and (max-width:454px) {
+    .deleteaccount{
+        left: 68vw;
+    }
+}
+ @media only screen and (max-width:426px) {
+    .deleteaccount{
+        left: 66vw;
+    }
+}
+@media only screen and (max-width:400px) {
+    .deleteaccount{
+        left: 64vw;
+    }
+}
+@media only screen and (max-width:380px) {
+    .deleteaccount{
+        left: 62vw;
+    }
+}
+@media only screen and (max-width:356px) {
+    .deleteaccount{
+        left: 60vw;
+    }
+}
+@media only screen and (max-width:340px) {
+    .deleteaccount{
+        left: 58vw;
+    }
+}
+@media only screen and (max-width:324px) {
+    .deleteaccount{
+        left: 56vw;
+    }
+}
 
 
 
