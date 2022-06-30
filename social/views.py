@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
 from .models import Profile,Post,Stang,Followers,Likepost,Likestang
-from .helpers import send_forget_password_mail
 import uuid
 
 # Create your views here.
