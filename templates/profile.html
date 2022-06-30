@@ -24,8 +24,8 @@
                 <div class="stats-section">
                     <ul>
                         <li>POST<br>{{profile.number_of_posts}}</li>
-                        <li>FOLLOWERS<br>{{number_of_followers}}</li>
-                        <li>FOLLOWING<br>{{number_of_following}}</li>
+                        <li class='followerstap' id='followers'>FOLLOWERS<br>{{number_of_followers}}</li>
+                        <li class='followingtap' id='following'>FOLLOWING<br>{{number_of_following}}</li>
                     </ul>
                 </div>
                 <div class="bio-section">
@@ -56,6 +56,55 @@
                         {% endif %}
                         {% endfor %}
                     </div>
+                </div>
+                <div class="followingpopup" id='followingpopup'>
+                    <div class="followingheader">
+                        {% if request.user.username == user %}
+                        <p>Users you follow</p>
+                        {% else %}
+                        <p>Users {{user}} follow</p>
+                        {% endif %}
+                    </div>
+                    {% for following in followingprofiles %}
+                    <div class="following-list">
+                        <div class="image"><img src={{following.profile_pic.url}}>
+                        </div>
+                        <div class="following-username">
+                            <a href="/profile/{{following.username}}"><p>@{{following.username}}</p></a>
+                        </div>
+                        <div class="location">
+                            <p>{{following.location}}</p> 
+                        </div>
+                        <div class="followbutton">
+                            <a href="/profile/{{following.username}}"><button>Unfollow</button></a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <div class="followerspopup" id='followerspopup'>
+                    <div class="followersheader">
+                        {% if request.user.username == user %}
+                        <p>Your Followers</p>
+                        {% else %}
+                        <p>Followers of {{user}}</p>
+                        {% endif %}
+                    </div>
+                    {% for followers in followersprofiles %}
+                    <div class="followers-list">
+                        <div class="followimage"><img src={{followers.profile_pic.url}}>
+                        </div>
+                        <div class="followers-username">
+                            <a href="/profile/{{followers.username}}"><p>@{{followers.username}}</p></a>
+                        </div>
+                        <div class="location">
+                            <p>{{followers.location}}</p> 
+                        </div>
+                        <div class="followbutton">
+                            <a href="/profile/{{followers.username}}"><button>Profile</button></a>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <a href="/"><button class='back-btn'>Back</button></a>

@@ -179,6 +179,235 @@ li{
     color: white;
 }
 
+
+
+/* new code starts form here */
+
+
+.followerstap{
+    cursor: pointer;
+}
+
+.followingtap{
+    cursor: pointer;
+}
+
+.followingpopup{
+    background-color:rgb(219, 219, 219);
+    width: 22rem;
+    height: 25rem;
+    position: absolute;
+    left: 20rem;
+    top: 9rem;
+    outline: none;
+    border: none;
+    border-radius: 0.5rem;
+    overflow-y: scroll;
+    transition: .4s;
+    z-index: 12;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.followingheader{
+    text-align: center;
+    margin-top: 0.7rem;
+    font-size: 1.2rem;
+}
+.showfollowingpopup{
+    visibility: visible;
+    opacity: 100;
+    pointer-events: all;
+    transform: scale(1.1);
+}
+/* .followingpopup:hover{
+    width: 23rem;
+    height: 26rem;
+} */
+
+.following-list{
+    position: relative;
+    top: 1.5rem;
+    width: 21rem;
+    height: 3rem;
+    background-color: white;
+    margin: auto;
+    border: none;
+    outline: none;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+.image{
+    position: relative;
+    width: 3rem;
+    height: 3rem;
+    border-radius:4px;
+}
+.image img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1rem;
+}
+.following-username {
+    position: absolute;
+    bottom: 1.3rem;
+    font-size: 1.04rem;
+    left: 3.4rem;
+    cursor: pointer;
+}
+.following-username a{
+    text-decoration: none;
+    color: black;
+    transition: .5s;
+}
+.following-username a:hover{
+    color: rgba(0, 0, 0, 0.355);
+}
+
+.followbutton button {
+    padding: 0.3rem;
+    width: 4.3rem;
+    outline: none;
+    position: relative;
+    border: none;
+    border-radius: 6px;
+    background-color: rgb(0, 106, 255);
+    cursor: pointer;
+    transition: .4s;
+    font-size: 0.9rem;
+    top: .1rem;
+}
+.followbutton{
+    float: right;
+    bottom: 2.5rem;
+    right: 0.3rem;
+    position: relative;
+}
+.followbutton button:hover{
+    color: white;
+}
+
+.location {
+    position: absolute;
+    bottom: 0.3rem;
+    font-size: 0.8rem;
+    left: 3.5rem;
+}
+
+
+/* followers starts here */
+.followerspopup{
+    background-color:rgb(219, 219, 219);
+    width: 22rem;
+    height: 25rem;
+    position: absolute;
+    left: 20rem;
+    top: 9rem;
+    outline: none;
+    border: none;
+    border-radius: 0.5rem;
+    overflow-y: scroll;
+    transition: .4s;
+    z-index: 13;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.followersheader{
+    text-align: center;
+    margin-top: 0.7rem;
+    font-size: 1.2rem;
+}
+.showfollowerspopup{
+    visibility: visible;
+    opacity: 100;
+    pointer-events: all;
+    transform: scale(1.1);
+}
+/* .followerspopup:hover{
+    width: 23rem;
+    height: 26rem;
+} */
+
+.followers-list{
+    position: relative;
+    top: 1.5rem;
+    width: 21rem;
+    height: 3rem;
+    background-color: white;
+    margin: auto;
+    border: none;
+    outline: none;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+.followimage{
+    position: relative;
+    width: 3rem;
+    height: 3rem;
+    border-radius:4px;
+}
+.followimage img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1rem;
+}
+.followers-username {
+    position: absolute;
+    bottom: 1.3rem;
+    font-size: 1.04rem;
+    left: 3.4rem;
+    cursor: pointer;
+}
+.followers-username a{
+    text-decoration: none;
+    color: black;
+    transition: .5s;
+}
+.followers-username a:hover{
+    color: rgba(0, 0, 0, 0.355);
+}
+
+.followbutton button {
+    padding: 0.3rem;
+    width: 4.3rem;
+    outline: none;
+    position: relative;
+    border: none;
+    border-radius: 6px;
+    background-color: rgb(0, 106, 255);
+    cursor: pointer;
+    transition: .4s;
+    font-size: 0.9rem;
+    top: .1rem;
+}
+.followbutton{
+    float: right;
+    bottom: 2.5rem;
+    right: 0.3rem;
+    position: relative;
+}
+.followbutton button:hover{
+    color: white;
+}
+
+.location {
+    position: absolute;
+    bottom: 0.3rem;
+    font-size: 0.8rem;
+    left: 3.5rem;
+}
+
+
+
+
+
+
+
+/* new code ends */
+
 @media (max-width:936px) {
     html{
         font-size: 90%;
@@ -303,7 +532,91 @@ li{
         width: 29vw;
         height: 29vw;
     }
+    .followingpopup{
+        left: 17.7vw;
+        width: 35rem;
+        height: 48.5rem;
+
+    }
+
+    .following-list{
+        width: 100%;
+        height: 8rem;
+    }
+    .image img{
+        width: 9rem;
+        height: 8rem;
+    }
+    .following-username{
+        bottom: 5rem;
+        left: 9.4rem;
+        font-size: 1.6rem;
+    }
+    .followbutton button{
+        top: 1.5rem;
+        padding: 1.3rem;
+        width: 7.3rem;
+        margin-right: .5rem;
+        font-size: 1.1rem;
+
+
+    }
+    .location{
+        font-size: 1.2rem;
+        left: 10rem;
+        bottom: 3rem;
+    }
+
+
+    .followerspopup{
+        left: 17.7vw;
+        width: 35rem;
+        height: 48.5rem;
+
+    }
+
+    .followers-list{
+        width: 100%;
+        height: 8rem;
+    }
+    .followimage img{
+        width: 9rem;
+        height: 8rem;
+    }
+    .followers-username{
+        bottom: 5rem;
+        left: 9.4rem;
+        font-size: 1.6rem;
+    }
+    .followbutton button{
+        top: 1.5rem;
+        padding: 1.3rem;
+        width: 7.3rem;
+        margin-right: .5rem;
+        font-size: 1.1rem;
+
+
+    }
+    .location{
+        font-size: 1.2rem;
+        left: 10rem;
+        bottom: 3rem;
+    }
+
+
 }
+@media (max-width:463px){
+    .followerspopup{
+        width: 72vw;
+    }
+}
+@media (max-width:437px){
+    .followingpopup{
+        width: 72vw;
+        left: 18.5vw;
+    }
+}
+
 @media (max-width:417px){
     html{
         font-size: 55%;

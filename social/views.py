@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
 from .models import Profile,Post,Stang,Followers,Likepost,Likestang
+from .helpers import send_forget_password_mail
+import uuid
 
 # Create your views here.
 @login_required(login_url='/login')
@@ -68,7 +70,7 @@ def signuppage(r):
         password=r.POST['password']
         confirmpassword=r.POST['confirmpassword']
         email=r.POST['email']
-        username=username.replace(' ','')
+
         if username=='' or password=='' or confirmpassword==''or email=='':
             messages.info(r,'all input fields are required')
         else:
@@ -96,8 +98,6 @@ def loginpage(r):
     if r.method=='POST':
         username=r.POST['username']
         password=r.POST['password']
-        username=username.replace(" ",'')
-        password=password.replace(" ",'')
         user=authenticate(r,username=username,password=password)
         if user is not None:
             login(r,user)
@@ -178,7 +178,33 @@ def viewprofile(r,user):
     number_of_following=len(Followers.objects.filter(username=user))
     if Profile.objects.filter(username=user).exists():
         profile_obj=Profile.objects.get(username=user)
-        return render(r,'profile.html',{'profile':profile_obj,'buttontxt':buttontxt,'number_of_followers':number_of_followers,'number_of_following':number_of_following,'post':all_post})
+
+        #for following
+        user_following=Followers.objects.filter(username=user)
+        user_following_names=[]
+        user_following_profile_objs=[]
+        for i in user_following:
+            user_following_names.append(i.user_being_followed)
+        for i in user_following_names:
+            following_profiles=Profile.objects.filter(username=i)
+            user_following_profile_objs.append(following_profiles)
+        user_following_profile_objs=list(chain(*user_following_profile_objs))
+
+
+
+        followers=Followers.objects.filter(user_being_followed=user)
+        followers_names=[]
+
+        for i in followers:
+            followers_names.append(i.username)
+    
+        followers_names_obj=[]
+
+        for i in followers_names:
+            hh=Profile.objects.filter(username=i)
+            followers_names_obj.append(hh)
+        followers_names_obj=list(chain(*followers_names_obj))
+        return render(r,'profile.html',{'profile':profile_obj,'buttontxt':buttontxt,'number_of_followers':number_of_followers,'number_of_following':number_of_following,'post':all_post,'followingprofiles':user_following_profile_objs,'user':user,'followersprofiles':followers_names_obj})
     else:
         return HttpResponse('error! @user not found')
 
@@ -254,7 +280,6 @@ def deletestang(r):
 
     return redirect('/')
 
-
 @login_required(login_url='/login')
 def likestang(r):
     username=r.GET['username']
@@ -296,6 +321,7 @@ def search(r):
         final_search_results=list(chain(*final_search_results))
 
     return render(r,'search.html',{'search':final_search_results,'profile':profile_obj})
+
 @login_required(login_url='/login')
 def uploadvideo(r):
     if r.method=='POST':
@@ -361,6 +387,14 @@ def deleterequest(r):
         else:
             messages.info(r,'Invalid Input!')
             return redirect('/settings')
+
+
+    
+
+    
+
+
+
 
     
 
