@@ -65,10 +65,10 @@ def homepage(r):
 
 def signuppage(r):
     if r.method=='POST':
-        username=r.POST['username']
-        password=r.POST['password']
-        confirmpassword=r.POST['confirmpassword']
-        email=r.POST['email']
+        username=r.POST['username'].replace(' ','')
+        password=r.POST['password'].replace(' ','')
+        confirmpassword=r.POST['confirmpassword'].replace(' ','')
+        email=r.POST['email'].replace(' ','')
 
         if username=='' or password=='' or confirmpassword==''or email=='':
             messages.info(r,'all input fields are required')
@@ -95,8 +95,8 @@ def signuppage(r):
 
 def loginpage(r):
     if r.method=='POST':
-        username=r.POST['username']
-        password=r.POST['password']
+        username=r.POST['username'].replace(' ','')
+        password=r.POST['password'].replace(' ','')
         user=authenticate(r,username=username,password=password)
         if user is not None:
             login(r,user)
