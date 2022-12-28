@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-*97&2aw7kby5zh*bfrc#p#+1axnk3d4+re-0sdbxy=cc$ob30*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG=True
 
-ALLOWED_HOSTS = ['35.154.236.58','stangchat.in']
+ALLOWED_HOSTS = ['35.154.236.58','stangchat.in','rishbakshi.pythonanywhere.com']
 
 # Application definition
 
@@ -69,7 +69,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'main.wsgi.application'
-CSRF_TRUSTED_ORIGINS= ['https://stangchat.in']
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
